@@ -1,0 +1,21 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\src",
+    "\\app\\src\\main",
+    "\\app\\src\\main\\java",
+    "\\app\\src\\main\\java\\apackage",
+    "\\app\\src\\main\\java\\apackage\\com",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\model",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\model\\event",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\model\\event\\eventAssist",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\model\\Location",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\model\\network",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\presenter",
+    "\\app\\src\\main\\java\\apackage\\com\\yournight\\view"
+  ],
+  "SelectedNode": "\\app\\src\\main\\java\\apackage\\com\\yournight\\model\\network\\EventNetwork.java",
+  "PreviewInSolutionExplorer": false
+}

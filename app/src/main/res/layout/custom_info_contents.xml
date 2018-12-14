@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon_customWindow"
+            android:layout_width="280dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="15dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/title_customWindow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/attending_customWindow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/location_customWindow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/address_customWindow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/starting_customWindow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+</LinearLayout>

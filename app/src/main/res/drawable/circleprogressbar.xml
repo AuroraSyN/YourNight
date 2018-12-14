@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/progressBarCircle">
+        <rotate
+            android:fromDegrees="270"
+            android:toDegrees="270"
+            android:pivotX="50%"
+            android:pivotY="50%" >
+            <shape
+                android:innerRadiusRatio="2.5"
+                android:shape="ring"
+                android:thicknessRatio="25.0" >
+                <gradient
+                    android:centerColor="@color/mainBackgroundTmp4"
+                    android:endColor="@color/mainBackgroundTmp4"
+                    android:startColor="@color/mainBackgroundTmp4"
+                    android:type="sweep" />
+            </shape>
+        </rotate>
+    </item>
+    <item android:id="@+id/progressSecondary">
+        <rotate
+            android:fromDegrees="280"
+            android:toDegrees="280"
+            android:pivotX="50%"
+            android:pivotY="50%" >
+            <shape
+                android:innerRadiusRatio="2.5"
+                android:shape="ring"
+                android:thicknessRatio="25.0" >
+                <gradient
+                    android:centerColor="@color/mainBackgroundTmp2"
+                    android:endColor="@color/mainBackgroundTmp2"
+                    android:startColor="@color/mainBackgroundTmp2"
+                    android:type="sweep" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

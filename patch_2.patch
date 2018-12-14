@@ -1,0 +1,243 @@
+Index: app/src/main/java/apackage/com/yournight/view/LoginPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision )
+@@ -34,8 +34,6 @@
+     private AccessLogin assesLogin;
+     private LoginButton loginButton;
+     private FacebookNetwork facebook;
+-    private Button accCreateButton;
+-
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -44,21 +42,12 @@
+         AccessLogin.initialize();
+         assesLogin = AccessLogin.getInstance();
+         setContentView(R.layout.activity_login_page);
+-        accCreateButton = findViewById(R.id.accCreateButton);
+         loginButton = findViewById(R.id.facebook_loginButton);
+         List<String> fbScope = Arrays.asList("public_profile", "email");
+         assesLogin.addSocialNetwork(new FacebookNetwork(this, fbScope));
+         facebook = (FacebookNetwork) assesLogin.getSocialNetwork(SocialNetwork.Network.FACEBOOK);
+ 
+         if (facebook.isConnected()){
+-            accCreateButton.setText("Weiter");
+-            accCreateButton.setOnClickListener(new View.OnClickListener() {
+-                @Override
+-                public void onClick(View v) {
+-                    Intent intent = new Intent(LoginPage.this, SplashScreen.class);
+-                    startActivity(intent);
+-                }
+-            });
+             AccessToken token = facebook.getAccessToken();
+             assesLogin.setToken(token);
+             Log.e("LoginPage", "Facebook AccessLogin(auto) successful with token : " + token.getToken() + "\n" + "and Email : " + token.getEmail());
+Index: app/src/main/java/apackage/com/yournight/model/event/EventParser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision )
+@@ -151,8 +151,9 @@
+             events[index].getStartTime().split("T");
+             String[] eventDate = events[index].getStartTime().split("T");
+             String[] eventTime = eventDate[1].split("\\+");
++            eventTime[0].substring(1,4);
+             events[index].setStartTime(eventDate[0] + " ab " + eventTime[0]);
+-            
++
+             Log.e("LOG | ---","----");
+             Log.e("LOG | id", events[index].getId());
+             Log.e("LOG | name", events[index].getName());
+Index: app/src/main/res/layout/activity_login_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login_page.xml	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ app/src/main/res/layout/activity_login_page.xml	(revision )
+@@ -11,37 +11,16 @@
+     <com.facebook.login.widget.LoginButton
+         android:id="@+id/facebook_loginButton"
+         android:layout_width="250dp"
+-        android:layout_height="40dp"
++        android:layout_height="50dp"
+         android:layout_gravity="center_horizontal"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginStart="8dp"
++        android:layout_marginBottom="250dp"
++        android:layout_marginEnd="25dp"
++        android:layout_marginStart="25dp"
+         android:layout_marginTop="250dp"
++        app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.51"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
+-    <TextView
+-        android:id="@+id/textView"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginEnd="16dp"
+-        android:layout_marginStart="275dp"
+-        android:layout_marginTop="24dp"
+-        android:text="@string/einloggen"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-
+-    <Button
+-        android:id="@+id/accCreateButton"
+-        android:layout_width="258dp"
+-        android:layout_height="51dp"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="24dp"
+-        android:text="@string/account_erstelln"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/facebook_loginButton" />
+-
+ </android.support.constraint.ConstraintLayout>
+Index: app/src/main/java/apackage/com/yournight/view/SplashScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/SplashScreen.java	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ app/src/main/java/apackage/com/yournight/view/SplashScreen.java	(revision )
+@@ -1,12 +1,9 @@
+ package apackage.com.yournight.view;
+ 
+ import android.content.Intent;
+-import android.content.res.ColorStateList;
+-import android.graphics.Color;
+ import android.os.Handler;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+-import android.view.Menu;
+ import android.view.View;
+ import android.view.animation.Animation;
+ import android.view.animation.AnimationUtils;
+@@ -19,14 +16,12 @@
+ 
+ import apackage.com.yournight.R;
+ import apackage.com.yournight.model.Location.GeoOperations;
+-import apackage.com.yournight.model.Location.Location;
+-import apackage.com.yournight.model.access.AzureAccessToken;
+ import apackage.com.yournight.model.network.EventNetwork;
+ 
+ public class SplashScreen extends AppCompatActivity implements Animation.AnimationListener {
+ 
+     /** Duration of wait **/
+-    private final int SPLASH_DISPLAY_LENGTH = 5000;
++    private final int SPLASH_DISPLAY_LENGTH = 8000;
+     private RequestQueue requestQueue;
+     private EventNetwork server;
+     private TextView tv;
+@@ -36,13 +31,12 @@
+     private static final int NUMBER_OF_ANIMATIONS = 2;
+     private int animationFinishedCount = 0;
+     /** Called when the activity is first created. */
++
+     @Override
+     public void onCreate(Bundle icicle) {
+-
+         super.onCreate(icicle);
+         setContentView(R.layout.activity_splash_screen);
+         startAnimation();
+-
+         // GeoOperations geoOperations = new GeoOperations(this, this);
+         GeoOperations geoOperations = null;
+         requestQueue = Volley.newRequestQueue(this);
+@@ -58,12 +52,10 @@
+                 Intent mainIntent = new Intent(SplashScreen.this,MainActivity.class);
+                 SplashScreen.this.startActivity(mainIntent);
+                 SplashScreen.this.finish();
+-
+             }
+         }, SPLASH_DISPLAY_LENGTH);
+-
+-
+     }
++
+     public void startAnimation() {
+         tv = (TextView) findViewById(R.id.splashtext);
+         iv = (ImageView) findViewById(R.id.splashscreen);
+@@ -77,6 +69,7 @@
+         tv.startAnimation(downsideUp);
+         iv.startAnimation(upsideDown);
+     }
++
+     @Override
+     public void onAnimationStart(Animation animation) {
+         //Nothing
+@@ -91,7 +84,6 @@
+         }
+ 
+     }
+-
+     @Override
+     public void onAnimationRepeat(Animation animation) {
+         //Nothing
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ .idea/modules.xml	(revision )
+@@ -3,8 +3,7 @@
+   <component name="ProjectModuleManager">
+     <modules>
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+-      <module fileurl="file://C:\Users\Gobi\Mobile Computing\WorkspaceAndroid\yournightTest\yournight.iml" filepath="C:\Users\Gobi\Mobile Computing\WorkspaceAndroid\yournightTest\yournight.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/.idea/yournightTest.iml" filepath="$PROJECT_DIR$/.idea/yournightTest.iml" />
++      <module fileurl="file://$PROJECT_DIR$/yournight.iml" filepath="$PROJECT_DIR$/yournight.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/apackage/com/yournight/view/fragment/FragmentHome.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/fragment/FragmentHome.java	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ app/src/main/java/apackage/com/yournight/view/fragment/FragmentHome.java	(revision )
+@@ -56,12 +56,13 @@
+ 
+ 
+         if(events != null){
+-
+             for(int i = 0; i <= MAXEVENTS; i++){
+                 bitmaps.add(icon);
+                 titles.add(events[i].getName());
+                 descriptions.add(events[i].getStartTime());
+             }
++        }else{
++            setRecyclerView(view);
+         }
+ 
+ //
+Index: app/src/main/java/apackage/com/yournight/model/network/EventNetwork.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/network/EventNetwork.java	(revision 842189b0ea84095c659e65a00e21b404e76a9799)
++++ app/src/main/java/apackage/com/yournight/model/network/EventNetwork.java	(revision )
+@@ -22,7 +22,6 @@
+ 
+ import apackage.com.yournight.model.Location.GeoOperations;
+ import apackage.com.yournight.model.Location.Location;
+-import apackage.com.yournight.model.access.AzureAccessToken;
+ import apackage.com.yournight.model.event.Event;
+ import apackage.com.yournight.model.event.EventParser;
+ 

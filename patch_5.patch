@@ -1,0 +1,409 @@
+Index: app/src/main/java/apackage/com/yournight/view/LoginPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision bdbb803a66742b62c1422229f9db160df8bc3dbf)
++++ app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision )
+@@ -59,7 +59,6 @@
+             facebook.requestLogin(loginButton, this);
+         }
+ 
+-        LoginPage.this.finish();
+     }
+ 
+     @Override
+Index: app/src/main/java/apackage/com/yournight/model/event/EventParser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision bdbb803a66742b62c1422229f9db160df8bc3dbf)
++++ app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision )
+@@ -29,145 +29,129 @@
+         this.activity = activity;
+     }
+ 
+-
+     @Override
+     protected Object doInBackground(Object[] objects) {
+         int index = 0;
++
+         for (Event event : eventsList){
+-            //description
+-            events[index].setId(event.getId());
+-            events[index].setName(event.getName());
+-            events[index].setCoverPicture(event.getCoverPicture());
+-            events[index].setProfilePicture(event.getProfilePicture());
+-            events[index].setDescription(event.getDescription());
+-            events[index].setDistance(event.getDistance());
+-            events[index].setStartTime(event.getStartTime());
+-            events[index].setEndTime(event.getEndTime());
++
++
++                //description
++                events[index].setId(event.getId());
++                events[index].setName(event.getName());
++                events[index].setCoverPicture(event.getCoverPicture());
++                events[index].setProfilePicture(event.getProfilePicture());
++                events[index].setDescription(event.getDescription());
++                events[index].setDistance(event.getDistance());
++                events[index].setStartTime(event.getStartTime());
++                events[index].setEndTime(event.getEndTime());
+             /* place */
+-            events[index].setPlace(event.getPlace());
+-            events[index].setPlaceID(event.getPlace().getId());
+-            events[index].setPlaceName(event.getPlace().getName());
++                events[index].setPlace(event.getPlace());
++                events[index].setPlaceID(event.getPlace().getId());
++                events[index].setPlaceName(event.getPlace().getName());
+             /* location */
+-            events[index].setLocation(event.getPlace().getLocation());
+-            events[index].setCity(event.getPlace().getLocation().getCity());
+-            events[index].setCountry(event.getPlace().getLocation().getCountry());
+-            events[index].setLatitude(event.getPlace().getLocation().getLatitude());
+-            events[index].setLongitude(event.getPlace().getLocation().getLongitude());
+-            events[index].setStreet(event.getPlace().getLocation().getStreet());
+-            events[index].setZip(event.getPlace().getLocation().getZip());
++                events[index].setLocation(event.getPlace().getLocation());
++                events[index].setCity(event.getPlace().getLocation().getCity());
++                events[index].setCountry(event.getPlace().getLocation().getCountry());
++                events[index].setLatitude(event.getPlace().getLocation().getLatitude());
++                events[index].setLongitude(event.getPlace().getLocation().getLongitude());
++                events[index].setStreet(event.getPlace().getLocation().getStreet());
++                events[index].setZip(event.getPlace().getLocation().getZip());
+             /* stats */
+-            events[index].setStats(event.getStats());
+-            events[index].setAttending(event.getStats().getAttending());
+-            events[index].setDeclined(event.getStats().getDeclined());
+-            events[index].setMaybe(event.getStats().getMaybe());
+-            events[index].setNoreply(event.getStats().getNoreply());
++                events[index].setStats(event.getStats());
++                events[index].setAttending(event.getStats().getAttending());
++                events[index].setDeclined(event.getStats().getDeclined());
++                events[index].setMaybe(event.getStats().getMaybe());
++                events[index].setNoreply(event.getStats().getNoreply());
+             /* venue */
+-            events[index].setVenue(event.getVenue());
+-            events[index].setVenueId(event.getVenue().getId());
+-            events[index].setVenueName(event.getVenue().getName());
+-            events[index].setVenueCategory(event.getVenue().getCategory());
++                events[index].setVenue(event.getVenue());
++                events[index].setVenueId(event.getVenue().getId());
++                events[index].setVenueName(event.getVenue().getName());
++                events[index].setVenueCategory(event.getVenue().getCategory());
+ 
+-            /* bitmap */
+-
+-            /*
+-            try {
+-                URL coverUrl = new URL(events[index].getCoverPicture());
+-                URL profileUrl = new URL(events[index].getProfilePicture());
+-                events[index].setBitmapCoverPicture(BitmapFactory.decodeStream(coverUrl.openConnection().getInputStream()));
+-                events[index].setBitmapProfilePicture(BitmapFactory.decodeStream(profileUrl.openConnection().getInputStream()));
+-            } catch (MalformedURLException e) {
+-                e.printStackTrace();
+-            } catch (IOException e) {
+-                e.printStackTrace();
+-                Log.e("BITMAP", e.toString());
+-            }
+-            */
+-
+-
+             /* control */
+-            if(events[index].getId() == null){
+-                events[index].setId("null");
+-            }
+-            if(events[index].getName() == null){
+-                events[index].setName("null");
+-            }
+-            if(events[index].getCoverPicture() == null){
+-                events[index].setCoverPicture("null");
+-            }
+-            if(events[index].getProfilePicture() == null){
+-                events[index].setProfilePicture("null");
+-            }
+-            if(events[index].getDescription() == null){
+-                events[index].setDescription("null");
+-            }
+-            if(events[index].getDistance() == null){
+-                events[index].setDistance("null");
+-            }
+-            if(events[index].getStartTime() == null){
+-                events[index].setStartTime("null");
+-            }
+-            if(events[index].getEndTime() == null){
+-                events[index].setEndTime("null");
+-            }
+-            //place
+-            if(events[index].getPlaceID() == null){
+-                events[index].setPlaceID("null");
+-            }
+-            if(events[index].getPlaceName() == null){
+-                events[index].setPlaceName("null");
+-            }
+-            //location
+-            if(events[index].getCity() == null){
+-                events[index].setCity("null");
+-            }
+-            if(events[index].getCountry() == null){
+-                events[index].setCountry("null");
+-            }
+-            if(events[index].getLatitude() == null){
+-                events[index].setLatitude("null");
+-            }
+-            if(events[index].getLongitude() == null){
+-                events[index].setLongitude("null");
+-            }
+-            if(events[index].getStreet() == null){
+-                events[index].setStreet("null");
+-            }
+-            if(events[index].getZip() == null){
+-                events[index].setZip("null");
+-            }
+-            if (events[index].getAttending() == null) {
+-                events[index].setAttending("null");
+-            }
+-            if (events[index].getDeclined() == null) {
+-                events[index].setDeclined("null");
+-            }
+-            if (events[index].getMaybe() == null) {
+-                events[index].setMaybe("null");
+-            }
+-            if (events[index].getNoreply() == null) {
+-                events[index].setNoreply("null");
+-            }
+-            if(events[index].getVenueId() == null){
+-                events[index].setVenueId("null");
+-            }
+-            if(events[index].getVenueName() == null){
+-                events[index].setVenueName("null");
+-            }
+-            if(events[index].getVenueCategory() == null){
+-                events[index].setVenueCategory("null");
+-            }
++                if (events[index].getId() == null) {
++                    events[index].setId("null");
++                }
++                if (events[index].getName() == null) {
++                    events[index].setName("null");
++                }
++                if (events[index].getCoverPicture() == null) {
++                    events[index].setCoverPicture("null");
++                }
++                if (events[index].getProfilePicture() == null) {
++                    events[index].setProfilePicture("null");
++                }
++                if (events[index].getDescription() == null) {
++                    events[index].setDescription("null");
++                }
++                if (events[index].getDistance() == null) {
++                    events[index].setDistance("null");
++                }
++                if (events[index].getStartTime() == null) {
++                    events[index].setStartTime("null");
++                }
++                if (events[index].getEndTime() == null) {
++                    events[index].setEndTime("null");
++                }
++                //place
++                if (events[index].getPlaceID() == null) {
++                    events[index].setPlaceID("null");
++                }
++                if (events[index].getPlaceName() == null) {
++                    events[index].setPlaceName("null");
++                }
++                //location
++                if (events[index].getCity() == null) {
++                    events[index].setCity("null");
++                }
++                if (events[index].getCountry() == null) {
++                    events[index].setCountry("null");
++                }
++                if (events[index].getLatitude() == null) {
++                    events[index].setLatitude("null");
++                }
++                if (events[index].getLongitude() == null) {
++                    events[index].setLongitude("null");
++                }
++                if (events[index].getStreet() == null) {
++                    events[index].setStreet("null");
++                }
++                if (events[index].getZip() == null) {
++                    events[index].setZip("null");
++                }
++                if (events[index].getAttending() == null) {
++                    events[index].setAttending("null");
++                }
++                if (events[index].getDeclined() == null) {
++                    events[index].setDeclined("null");
++                }
++                if (events[index].getMaybe() == null) {
++                    events[index].setMaybe("null");
++                }
++                if (events[index].getNoreply() == null) {
++                    events[index].setNoreply("null");
++                }
++                if (events[index].getVenueId() == null) {
++                    events[index].setVenueId("null");
++                }
++                if (events[index].getVenueName() == null) {
++                    events[index].setVenueName("null");
++                }
++                if (events[index].getVenueCategory() == null) {
++                    events[index].setVenueCategory("null");
++                }
+ 
+             /* correct time */
+-            events[index].getStartTime().split("T");
+-            String[] eventDate = events[index].getStartTime().split("T");
+-            String[] buffer = eventDate[1].split("\\+");
+-            String[] eventDateBuffer = eventDate[0].split("\\-");
+-            String eventTime = buffer[0];
+-            eventTime = eventTime.substring(1, eventTime.length() - 3);
+-            events[index].setStartTime(eventDateBuffer[2] + "." + eventDateBuffer[1] + "." + eventDateBuffer[0] + " ab " + eventTime + " Uhr");
++                events[index].getStartTime().split("T");
++                String[] eventDate = events[index].getStartTime().split("T");
++                String[] buffer = eventDate[1].split("\\+");
++                String[] eventDateBuffer = eventDate[0].split("\\-");
++                String eventTime = buffer[0];
++                eventTime = eventTime.substring(1, eventTime.length() - 3);
++                events[index].setStartTime(eventDateBuffer[2] + "." + eventDateBuffer[1] + "." + eventDateBuffer[0] + " ab " + eventTime + " Uhr");
+ 
+ 
+-
+ //            Log.e("LOG | ---","----");
+ //            Log.e("LOG | id", events[index].getId());
+ //            Log.e("LOG | name", events[index].getName());
+@@ -193,8 +177,10 @@
+ //            Log.e("LOG | venueName", events[index].getVenueName());
+ //            Log.e("LOG | venueCategory", events[index].getVenueCategory());
+ 
+-            index++;
+-        }
++                index++;
++            }
++
++
+         Log.e("INDEX", String.valueOf(index));
+         return null;
+     }
+@@ -202,7 +188,6 @@
+     @Override
+     protected void onPostExecute(Object o) {
+         super.onPostExecute(o);
+-
+         Intent mainIntent = new Intent(activity,MainActivity.class);
+         activity.startActivity(mainIntent);
+         activity.finish();
+Index: app/src/main/java/apackage/com/yournight/model/event/Event.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/event/Event.java	(revision bdbb803a66742b62c1422229f9db160df8bc3dbf)
++++ app/src/main/java/apackage/com/yournight/model/event/Event.java	(revision )
+@@ -47,6 +47,7 @@
+     private String venueId;
+     private String venueName;
+     private String venueCategory;
++    private String[] venueCategoryList;
+ 
+     /* Bitmap */
+     private Bitmap bitmapCoverPicture;
+@@ -283,5 +284,13 @@
+     public void setBitmapProfilePicture(Bitmap bitmapProfilePicture) {
+         this.bitmapProfilePicture = bitmapProfilePicture;
+     }
++
++    public String[] getVenueCategoryList() {
++        return venueCategoryList;
++    }
++
++    public void setVenueCategoryList(String[] venueCategoryList) {
++        this.venueCategoryList = venueCategoryList;
++    }
+ }
+ 
+Index: app/src/main/java/apackage/com/yournight/model/event/eventAssist/EventVenue.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/event/eventAssist/EventVenue.java	(revision bdbb803a66742b62c1422229f9db160df8bc3dbf)
++++ app/src/main/java/apackage/com/yournight/model/event/eventAssist/EventVenue.java	(revision )
+@@ -9,6 +9,7 @@
+     private String id;
+     private String name;
+     private String category;
++    private String[] categoryList;
+ 
+     public String getId() {
+         return id;
+@@ -29,4 +30,16 @@
+     public String getCategory() {
+         return category;
+     }
++
++    public void setCategory(String category) {
++        this.category = category;
++    }
++
++    public String[] getCategoryList() {
++        return categoryList;
++    }
++
++    public void setCategoryList(String[] categoryList) {
++        this.categoryList = categoryList;
++    }
+ }
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision bdbb803a66742b62c1422229f9db160df8bc3dbf)
++++ .idea/modules.xml	(revision )
+@@ -3,8 +3,9 @@
+   <component name="ProjectModuleManager">
+     <modules>
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++      <module fileurl="file://$PROJECT_DIR$/yournight.iml" filepath="$PROJECT_DIR$/yournight.iml" />
+       <module fileurl="file://C:\Users\Gobi\Mobile Computing\WorkspaceAndroid\yournightTest\yournight.iml" filepath="C:\Users\Gobi\Mobile Computing\WorkspaceAndroid\yournightTest\yournight.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/yournightTest.iml" filepath="$PROJECT_DIR$/yournightTest.iml" />
++      <module fileurl="file://C:\Users\Stenk\StudioProjects\yournight\yournightTest.iml" filepath="C:\Users\Stenk\StudioProjects\yournight\yournightTest.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/apackage/com/yournight/model/network/EventNetwork.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/network/EventNetwork.java	(revision bdbb803a66742b62c1422229f9db160df8bc3dbf)
++++ app/src/main/java/apackage/com/yournight/model/network/EventNetwork.java	(revision )
+@@ -75,7 +75,7 @@
+             requestPermissions();
+         }
+         else{
+-            if(!isLocationEnabled(activity)){
++            if(isLocationEnabled(activity)){
+                 showGPSDisabledAlertToUser();
+                     discoverLocation();
+             }
+@@ -97,13 +97,12 @@
+             @Override
+             public void run() {
+ 
+-                    if(counterDisover <= 5){
++                    if(counterDisover <= 10){
+                         LocationModel locationModel = googleFusedLocationProvider.getLocation();
+ 
+                         if(locationModel != null){
+                             Log.e("geo" , "found...  " );
+                             delayhandler.removeCallbacks(delayrunnable);
+-
+                             getEventsFromServer(locationModel);
+                         }
+ 

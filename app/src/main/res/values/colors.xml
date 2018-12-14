@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#263238</color>
+    <color name="colorPrimaryDark">#121212</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="test">#00002b</color>
+    <color name="bottomNavigation">#000001</color>
+    <color name="textColor">#ffffff</color>
+    <color name="textColorNotActive">#90a4ae</color>
+    <color name="textColorActive">#ffffff</color>
+    <color name="separator">#121212</color>
+
+    <color name="mainBackgroundGreen">#2bbd7e</color>
+    <color name="mainBackgroundTmp">#263238</color>
+    <color name="mainBackgroundTmp2">#121212</color>
+    <color name="mainBackgroundTmp3">#90a4ae</color>
+    <color name="mainBackgroundTmp4">#0099ff</color>
+    <color name="mainBackgroundTmp5">#69F0AE</color>
+
+
+</resources>

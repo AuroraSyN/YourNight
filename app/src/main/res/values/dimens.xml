@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="app_bar_height">220dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="line_margin">1dp</dimen>
+    <dimen name="seperator_margin">30dp</dimen>
+    <dimen name="cardTextView_margin">6dp</dimen>
+    <dimen name="editTextMargin">10dp</dimen>
+    <dimen name="marginSeekBarTextView">20dp</dimen>
+    <dimen name="checkBoxTopMargin">20dp</dimen>
+</resources>

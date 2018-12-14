@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name"> </string>
+    <string name="facebook_app_id">2085114875040915</string>
+    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
+
+    <string name="events">Events</string>
+    <string name="nightList">Night List</string>
+    <string name="favourites">Favourites</string>
+    <string name="friends">Friends</string>
+    <string name="karte">Karte</string>
+    <string name="news">News</string>
+    <string name="profil">Profil</string>
+    <string name="home">Home</string>
+    <string name="einloggen">Einloggen</string>
+    <string name="account_erstelln">Account erstelln</string>
+    <string name="title_activity_pic_test">PicTest</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="title_activity_event_detail_page">EventDetailPage</string>
+    <string name="title_activity_fragment_map1">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gib_z_b_party_ein">Gib z.B. "Party" ein</string>
+    <string name="editTextTown">Gib z.B. "Worms" ein</string>
+    <string name="entfernungslimit">Entfernungslimit</string>
+    <string name="startdatum">Startdatum</string>
+    <string name="startuhrzeit">Startuhrzeit</string>
+    <string name="enddatum">Enddatum</string>
+    <string name="enduhrzeit">Enduhrzeit</string>
+    <string name="suche">Suche</string>
+    <string name="erweitern">erweitern</string>
+    <string name="letzte_suchanfragen">Letzte Suchanfragen</string>
+    <string name="textview">TextView</string>
+    <string name="button_change_profil">Profilbild ändern</string>
+    <string name="button_save_data">Daten speichern</string>
+    <string name="edit_name">Name</string>
+    <string name="edit_user_name">Benutzername</string>
+    <string name="edit_birth_date">Geburtsdatum</string>
+    <string name="edit_city">Wohnort</string>
+    <string name="edit_email">Email</string>
+    <string name="edit_phone_number">Handy</string>
+    <!--string name="textview">TextView</string-->
+    <!--string name="textview" translatable="false">TextView</string-->
+
+
+</resources>

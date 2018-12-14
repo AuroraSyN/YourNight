@@ -1,0 +1,183 @@
+Index: app/src/main/java/apackage/com/yournight/view/LoginPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision e5a9659b78523a7878e099893cfd9c369c9147bb)
++++ app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision )
+@@ -83,22 +83,14 @@
+ 
+     @Override
+     public void onLoginSuccess(SocialNetwork.Network network) {
+-        if (facebook.isConnected()){
+-            AccessToken token = facebook.getAccessToken();
+-            assesLogin.setToken(token);
+-            Log.e("LoginPage", "Facebook AccessLogin(auto2) successful with token : " + token.getToken() + "\n" + "and Email : " + token.getEmail());
+-            Intent intent = new Intent(LoginPage.this, SplashScreen.class);
+-            startActivity(intent);
+-        }else {
+-            if (network == SocialNetwork.Network.FACEBOOK) {
+-                AccessToken token = assesLogin.getSocialNetwork(SocialNetwork.Network.FACEBOOK).getAccessToken();
+-                assesLogin.setToken(token);
+-                Log.e("LoginPage", "Facebook AccessLogin successful with token : " + token.getToken() + "\n" + "and Email : " + token.getEmail());
+-                Intent intent = new Intent(LoginPage.this, SplashScreen.class);
+-                startActivity(intent);
+-            }
+-            updateStatuses();
+-        }
++        if (network == SocialNetwork.Network.FACEBOOK) {
++            AccessToken token = assesLogin.getSocialNetwork(SocialNetwork.Network.FACEBOOK).getAccessToken();
++            assesLogin.setToken(token);
++            Log.e("LoginPage", "Facebook AccessLogin successful with token : " + token.getToken() + "\n" + "and Email : " + token.getEmail());
++            Intent intent = new Intent(LoginPage.this, SplashScreen.class);
++            startActivity(intent);
++        }
++        updateStatuses();
+     }
+ 
+     @Override
+Index: app/src/main/java/apackage/com/yournight/model/event/EventParser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision e5a9659b78523a7878e099893cfd9c369c9147bb)
++++ app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision )
+@@ -146,6 +146,12 @@
+                 events[index].setVenueCategory("null");
+             }
+ 
++            /* correct time */
++            events[index].getStartTime().split("T");
++            String[] eventDate = events[index].getStartTime().split("T");
++            String[] eventTime = eventDate[1].split("\\+");
++            events[index].setStartTime(eventDate[0] + " ab " + eventTime[0]);
++
+             Log.e("LOG | ---","----");
+             Log.e("LOG | id", events[index].getId());
+             Log.e("LOG | name", events[index].getName());
+Index: app/src/main/java/apackage/com/yournight/view/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/MainActivity.java	(revision e5a9659b78523a7878e099893cfd9c369c9147bb)
++++ app/src/main/java/apackage/com/yournight/view/MainActivity.java	(revision )
+@@ -1,5 +1,6 @@
+ package apackage.com.yournight.view;
+ 
++import android.content.SharedPreferences;
+ import android.os.Bundle;
+ import android.support.annotation.NonNull;
+ import android.support.design.widget.BottomNavigationView;
+@@ -8,6 +9,7 @@
+ import android.support.v7.app.AppCompatActivity;
+ import android.util.Log;
+ import android.view.MenuItem;
++import android.widget.Toast;
+ 
+ import com.facebook.AccessToken;
+ import com.facebook.GraphRequest;
+@@ -24,21 +26,32 @@
+ import apackage.com.yournight.view.fragment.FragmentMap;
+ import apackage.com.yournight.view.fragment.FragmentSearch;
+ 
+-/**
+- * Created by Dennis on 15.11.2017.
+- * inf2179@hs-worms.de
+- */
+-
+ public class MainActivity extends AppCompatActivity {
+ 
++    final static String ID_KEY = "ID";
++    final static String NAME_KEY = "NAME";
++    final static String EMAIL_KEY = "EMAIL";
++
+     private AccessLogin asses;
+     private String userEmail;
+     private String userName;
+     private String userID;
+     private ProfilePictureView userPictureView;
+ 
+-    private JSONArray jsonArray;
+-
++    //Save
++    private SharedPreferences sharedPreferences;
++    private SharedPreferences.Editor editor;
++
++    @Override
++    protected void onPause() {
++        super.onPause();
++        editor = sharedPreferences.edit();
++        editor.putString(ID_KEY, userID);
++        editor.putString(NAME_KEY, userName);
++        editor.putString(EMAIL_KEY, userEmail);
++        editor.commit();
++        Toast.makeText(this, " Data saved ", Toast.LENGTH_SHORT).show();
++    }
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -48,7 +61,7 @@
+         asses = AccessLogin.getInstance();
+         //  init_layout();
+         init();
+-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
++        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+         bottomNavigationView.setOnNavigationItemSelectedListener
+                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
+                     @Override
+@@ -75,27 +88,23 @@
+         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+         transaction.replace(R.id.frame_layout, FragmentHome.newInstance());
+         transaction.commit();
++
++        if(userEmail == null || userName == null){
++            loadDataBase();
++        }
++
+         //.Remove
+         showUserDataInLog();
+-
+-        new GraphRequest(
+-                AccessToken.getCurrentAccessToken(),
+-                "/"+userID+"/friends",
+-                null,
+-                HttpMethod.GET,
+-                new GraphRequest.Callback() {
+-                    public void onCompleted(GraphResponse response) {
+-                        JSONObject obj = response.getJSONObject();
+-                        jsonArray = response.getJSONArray();
+-//                        Log.e("FRIENDS", String.valueOf(jsonArray.length()));
+-//                        Log.e("FRIENDS", String.valueOf(obj.length()));
+-                    }
+-                }
+-        ).executeAsync();
++    }
+ 
++    private void loadDataBase(){
++        userID = sharedPreferences.getString(ID_KEY, "none");
++        userName = sharedPreferences.getString(NAME_KEY, "none");
++        userEmail = sharedPreferences.getString(EMAIL_KEY, "none");
+     }
+ 
+     private void init(){
++        sharedPreferences = getPreferences(MODE_PRIVATE);
+         userEmail = asses.getToken().getEmail();
+         userName = asses.getToken().getUserName();
+         userID = asses.getToken().getUserId();
+@@ -107,9 +116,11 @@
+     }
+ 
+     private void showUserDataInLog() {
+-      //  Log.e("Main:", userEmail);
+-      //  Log.e("Main:", userName);
+-      //  Log.e("Main:", userID);
++        Log.e("Main:", userEmail);
++        Log.e("Main:", userName);
++        Log.e("Main:", userID);
+         Log.e("MainToken:", "" + asses.getToken().getToken());
+     }
++
++
+ }

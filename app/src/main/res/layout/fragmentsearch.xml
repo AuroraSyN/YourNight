@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackgroundTmp2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/mainBackgroundTmp"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mainBackgroundTmp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/editTextMargin"
+                        android:src="@android:drawable/ic_menu_search" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/editTextParty"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/editTextMargin"
+                        android:ems="10"
+                        android:hint="@string/gib_z_b_party_ein"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/textColor"
+                        android:theme="@style/MyEditTextStyle" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/editTextMargin"
+                            android:src="@drawable/ic_location_on_white_24dp_1x" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/editTextTown"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/editTextMargin"
+                            android:ems="10"
+                            android:hint="@string/editTextTown"
+                            android:textColor="@color/textColor"
+                            android:textColorHint="@color/textColor"
+                            android:theme="@style/MyEditTextStyle" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/marginSeekBarTextView"
+                                android:layout_weight="1"
+                                android:text="@string/entfernungslimit"
+                                android:textColor="@color/textColor"
+                                android:textColorHint="@color/textColor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textKM"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/textColor"
+                                    android:textColorHint="@color/textColor" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:layout_marginRight="@dimen/editTextMargin"
+                                    android:text="km"
+                                    android:textColor="@color/textColor" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <SeekBar
+                            android:id="@+id/seekBar"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/editTextMargin"
+                            android:layout_marginLeft="@dimen/editTextMargin"
+                            android:layout_marginTop="@dimen/editTextMargin"
+                            android:layout_weight="1"
+                            android:theme="@style/MyEditTextStyle" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/editStartDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/editTextMargin"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:hint="@string/startdatum"
+                                android:inputType="date"
+                                android:textColor="@color/textColor"
+                                android:textColorHint="@color/textColor"
+                                android:theme="@style/MyEditTextStyle" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/editStartTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="@dimen/editTextMargin"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:ems="10"
+                                android:hint="@string/startuhrzeit"
+                                android:inputType="time"
+                                android:textColor="@color/textColor"
+                                android:textColorHint="@color/textColor"
+                                android:theme="@style/MyEditTextStyle" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/editEndDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/editTextMargin"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:ems="10"
+                                android:hint="@string/enddatum"
+                                android:inputType="date"
+                                android:textColor="@color/textColor"
+                                android:textColorHint="@color/textColor"
+                                android:theme="@style/MyEditTextStyle" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/editEndTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="@dimen/editTextMargin"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:ems="10"
+                                android:hint="@string/enduhrzeit"
+                                android:inputType="time"
+                                android:textColor="@color/textColor"
+                                android:textColorHint="@color/textColor"
+                                android:theme="@style/MyEditTextStyle" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/editTextMargin"
+                        android:layout_marginLeft="@dimen/editTextMargin"
+                        android:layout_marginRight="@dimen/editTextMargin"
+                        android:layout_marginTop="@dimen/editTextMargin"
+                        android:background="@color/mainBackgroundGreen"
+                        android:text="@string/suche"
+                        android:textColor="@color/textColor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/editTextMargin"
+                        android:layout_marginLeft="@dimen/editTextMargin"
+                        android:layout_marginRight="@dimen/editTextMargin"
+                        android:layout_marginTop="@dimen/checkBoxTopMargin"
+                        android:textColor="@color/textColor"
+                        android:buttonTint="@color/mainBackgroundGreen"
+                        android:checked="false"
+                        android:text="@string/erweitern" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mainBackgroundTmp2"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="@string/letzte_suchanfragen"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listViewSearch"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/mainBackgroundTmp2">
+
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

@@ -1,0 +1,144 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 2dc97718f748a8232605ac11be4c839a44333912)
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -3,8 +3,7 @@
+     package="apackage.com.yournight">
+ 
+     <uses-permission android:name="android.permission.INTERNET" />
+-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
++    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+ 
+     <application
+         android:allowBackup="true"
+Index: app/src/main/java/apackage/com/yournight/view/LoginPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision 2dc97718f748a8232605ac11be4c839a44333912)
++++ app/src/main/java/apackage/com/yournight/view/LoginPage.java	(revision )
+@@ -16,6 +16,7 @@
+ import com.android.volley.RequestQueue;
+ import com.android.volley.toolbox.Volley;
+ import com.facebook.login.widget.LoginButton;
++import com.google.android.gms.location.FusedLocationProviderClient;
+ 
+ import java.util.Arrays;
+ import java.util.List;
+@@ -39,6 +40,7 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         (new AzureAccessToken()).execute();
++
+         AccessLogin.initialize();
+         assesLogin = AccessLogin.getInstance();
+         setContentView(R.layout.activity_login_page);
+Index: app/src/main/java/apackage/com/yournight/model/event/EventParser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision 2dc97718f748a8232605ac11be4c839a44333912)
++++ app/src/main/java/apackage/com/yournight/model/event/EventParser.java	(revision )
+@@ -157,30 +157,30 @@
+ 
+ 
+ 
+-            Log.e("LOG | ---","----");
+-            Log.e("LOG | id", events[index].getId());
+-            Log.e("LOG | name", events[index].getName());
+-            Log.e("LOG | CoverPicture", events[index].getCoverPicture());
+-            Log.e("LOG | ProfilePicture", events[index].getProfilePicture());
+-            Log.e("LOG | Description", events[index].getDescription());
+-            Log.e("LOG | Distance", events[index].getDistance());
+-            Log.e("LOG | startTime", events[index].getStartTime());
+-            Log.e("LOG | endTime", events[index].getEndTime());
+-            Log.e("LOG | placeID", events[index].getPlaceID());
+-            Log.e("LOG | placeName", events[index].getPlaceName());
+-            Log.e("LOG | city ", events[index].getCity());
+-            Log.e("LOG | country ", events[index].getCountry());
+-            Log.e("LOG | latitude ", events[index].getLatitude());
+-            Log.e("LOG | longitude", events[index].getLongitude());
+-            Log.e("LOG | street", events[index].getStreet());
+-            Log.e("LOG | zip", events[index].getZip());
+-            Log.e("LOG | Attending", events[index].getAttending());
+-            Log.e("LOG | Declined", events[index].getDeclined());
+-            Log.e("LOG | Maybe", events[index].getMaybe());
+-            Log.e("LOG | Noreply", events[index].getNoreply());
+-            Log.e("LOG | venueId", events[index].getVenueId());
+-            Log.e("LOG | venueName", events[index].getVenueName());
+-            Log.e("LOG | venueCategory", events[index].getVenueCategory());
++//            Log.e("LOG | ---","----");
++//            Log.e("LOG | id", events[index].getId());
++//            Log.e("LOG | name", events[index].getName());
++//            Log.e("LOG | CoverPicture", events[index].getCoverPicture());
++//            Log.e("LOG | ProfilePicture", events[index].getProfilePicture());
++//            Log.e("LOG | Description", events[index].getDescription());
++//            Log.e("LOG | Distance", events[index].getDistance());
++//            Log.e("LOG | startTime", events[index].getStartTime());
++//            Log.e("LOG | endTime", events[index].getEndTime());
++//            Log.e("LOG | placeID", events[index].getPlaceID());
++//            Log.e("LOG | placeName", events[index].getPlaceName());
++//            Log.e("LOG | city ", events[index].getCity());
++//            Log.e("LOG | country ", events[index].getCountry());
++//            Log.e("LOG | latitude ", events[index].getLatitude());
++//            Log.e("LOG | longitude", events[index].getLongitude());
++//            Log.e("LOG | street", events[index].getStreet());
++//            Log.e("LOG | zip", events[index].getZip());
++//            Log.e("LOG | Attending", events[index].getAttending());
++//            Log.e("LOG | Declined", events[index].getDeclined());
++//            Log.e("LOG | Maybe", events[index].getMaybe());
++//            Log.e("LOG | Noreply", events[index].getNoreply());
++//            Log.e("LOG | venueId", events[index].getVenueId());
++//            Log.e("LOG | venueName", events[index].getVenueName());
++//            Log.e("LOG | venueCategory", events[index].getVenueCategory());
+ 
+             index++;
+         }
+Index: app/src/main/java/apackage/com/yournight/view/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/apackage/com/yournight/view/MainActivity.java	(revision 2dc97718f748a8232605ac11be4c839a44333912)
++++ app/src/main/java/apackage/com/yournight/view/MainActivity.java	(revision )
+@@ -101,13 +101,12 @@
+     private void init(){
+ 
+         sharedPreferences = getPreferences(MODE_PRIVATE);
+-        if(userEmail == null || userName == null){
+-            loadDataBase();
+-        }else {
+-            userEmail = asses.getToken().getEmail();
+-            userName = asses.getToken().getUserName();
+-            userID = asses.getToken().getUserId();
++        userEmail = asses.getToken().getEmail();
++        userName = asses.getToken().getUserName();
++        userID = asses.getToken().getUserId();
+         //        userPictureView.setProfileId(userID);
++        if(userEmail == null || userName == null){
++            loadDataBase();
+         }
+     }
+ 
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 2dc97718f748a8232605ac11be4c839a44333912)
++++ build.gradle	(revision )
+@@ -8,8 +8,6 @@
+     }
+     dependencies {
+         classpath 'com.android.tools.build:gradle:3.0.1'
+-        
+-
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+     }
