@@ -1,39 +1,41 @@
+#YourNight
+
 Webserivce: Auf dem Cloud-Computing Web-Dienst befindet sich der Webservice um Events von einem Client abzufragen. Der Webservice benutzt das offene Protokoll OAuth 2.0. OAuth 2.0 ermöglicht dem Webservice, die Identität des Nutzers anhand der Authentifizierung durch einen Autorisierungsserver zu überprüfen. So können bestimmte Clients auf die Webservice API zu greifen.
 
 Zuerst muss der Client mit der POST Methode den Access Token abfragen, um auf die Webservice API zuzugreifen. Im Request Body muss der Benutzername und das Passwort stehen, um den
 
 Access Token abzufragen. 
 
-POST Methode: https://eventaccesswebservice.azurewebsites.net/token
+> POST Methode: https://eventaccesswebservice.azurewebsites.net/token
 
-Request Body: username=user&password=yournightpass&grant_type=password
+> Request Body: username=user&password=yournightpass&grant_type=password
 
 
 Mit dem Access Token kann ein Client auf die Schnittstelle /values zugreifen, um Events abzufragen. Im Header muss sich der Access Token befinden. Um ein Events nach einer Position abzufragen, muss im Request Body die Daten Lat, Long, Distance und Limit mitgesendet werden.
 
 
-POST Methode: https://eventaccesswebservice.azurewebsites.net/values
+> POST Methode: https://eventaccesswebservice.azurewebsites.net/values
 
-Header: Authorization: bearer s8BBJqOlBr9ZA5k3kKoQDWwVpUdYK7nW7e81HjXTnUtVfJjn3AnPOtVjp-3sKBpe5Atmsh7g9dzuqIgEMMjz4f7ZBDHjgmIatwPOiqQYiuWBruQeQ7lXJPjORyxHfpXp5t64jGxfByVN0aSw2IZcyTyTqASJbrJ1cMFl3XJDwQCLhn3pxb-YYsaAqDU6vW1TgCTUhp9b07xkVu8Goz6adxyBAEC-AIyyqjibnlOZ9XZ6o49rXUG-FIvG8ylh2t8HlZEROsw833Km1087p_n9Vf0KY8EIq2XqhkH1n-edHnqNUBY2j7QZQC3EIcn6NqD 
+Header: Authorization: 
 
+> bearer s8BBJqOlBr9ZA5k3kKoQDWwVpUdYK7nW7e81HjXTnUtVfJjn3AnPOtVjp-3sKBpe5Atmsh7g9dzuqIgEMMjz4f7ZBDHjgmIatwPOiqQYiuWBruQeQ7lXJPjORyxHfpXp5t64jGxfByVN0aSw2IZcyTyTqASJbrJ1cMFl3XJDwQCLhn3pxb-YYsaAqDU6vW1TgCTUhp9b07xkVu8Goz6adxyBAEC-AIyyqjibnlOZ9XZ6o49rXUG-FIvG8ylh2t8HlZEROsw833Km1087p_n9Vf0KY8EIq2XqhkH1n-edHnqNUBY2j7QZQC3EIcn6NqD 
 
 
 Request-Body (Events in Frankenthal):
 
-{
-"Lat": 49.526058,
-"Long": 8.363838,
-"Distance": 500,
-"Limit":100
-}
+> {
+ "Lat": 49.526058,
+ Long": 8.363838,
+ "Distance": 500,
+ "Limit":100
+ }
 
 
 Der Webservice liefert eine JSON-Datei mit den aktiven Events eines Standpunktes.
 
 
 Bsp:
-
-{
+> {
   "events": [{
     "id": "836655879846811",
     "name": "U.S. Girls at Baby's All Right",
@@ -98,23 +100,27 @@ SQL-Datenbank: Die SQL befindet sich auf dem Cloud-Computing Dienst Azure. Der W
 
 Tabelle:
 
-ID              int
+>    ID              int
 
-Event ID    int
+>    Event ID        int
 
-Event       JSON
+>    Event       JSON
 
 
 YourNightApp: Ist eine Android App. Die Android App ist im Entwurfsmuster MVP programmiert. 
 
+-
 
 Google Maps API: Um Events auf der Google Map anzuzeigen, wird die Google Maps API verwendet. Dafür wird eine Google v2 API Access Token benötigt.
 
+-
 
 Facebook Login: Diese API ermöglicht dem Nutzer auf seine Konto Daten von Facebook zuzugreifen. Für die App YourNight sind die Facebook Freunde essentiell. 
 
+-
 
 Notification Hub: Fungiert als Back-End der Push-Nachtrichten Funktionlität. Dort werden die einzelnen Smartphones registriert, die dann durch den Google Cloud Messaging gepusht werden können.
 
+-
 
 Google Cloud Messaging: Ermöglicht Push Nachrichten an Android Smarthphones zu senden. Somit können Nutzer über Events benachricht werden.
