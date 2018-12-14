@@ -1,4 +1,6 @@
-#YourNight
+# YourNight
+
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 Webserivce: Auf dem Cloud-Computing Web-Dienst befindet sich der Webservice um Events von einem Client abzufragen. Der Webservice benutzt das offene Protokoll OAuth 2.0. OAuth 2.0 ermöglicht dem Webservice, die Identität des Nutzers anhand der Authentifizierung durch einen Autorisierungsserver zu überprüfen. So können bestimmte Clients auf die Webservice API zu greifen.
 
